@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pedidos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombrecliente</th>
+                <th>Nombreplato</th>
+                <th>Cantidad</th>
+                <th>Preciounitario</th>
+                <th>Preciototal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pedido in pedidos %}
+            <tr>
+                <td><a href="{{ path('pedidos_show', { 'id': pedido.id }) }}">{{ pedido.id }}</a></td>
+                <td>{{ pedido.nombrecliente }}</td>
+                <td>{{ pedido.nombreplato }}</td>
+                <td>{{ pedido.cantidad }}</td>
+                <td>{{ pedido.preciounitario }}</td>
+                <td>{{ pedido.preciototal }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pedidos_show', { 'id': pedido.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pedidos_edit', { 'id': pedido.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pedidos_new') }}">Create a new pedido</a>
+        </li>
+    </ul>
+{% endblock %}
